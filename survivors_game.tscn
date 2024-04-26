@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://2t1k8c681mjd"]
+[gd_scene load_steps=7 format=3 uid="uid://2t1k8c681mjd"]
 
 [ext_resource type="Script" path="res://survivors_game.gd" id="1_5iqm4"]
 [ext_resource type="PackedScene" uid="uid://delsvq2p81v4j" path="res://player.tscn" id="1_todl5"]
@@ -9,6 +9,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -109.722, -135, 0, 0, 0, 0, 2098, -135, 0, 0, 0, 0, 2105.67, 1314.96, 0, 0, 0, 0, -126.911, 1309.92, 0, 0, 0, 0, -105.677, -135)
 }
 point_count = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0i8q"]
+bg_color = Color(0.341176, 0.639216, 0.792157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ks2m2"]
+bg_color = Color(0.941176, 0.407843, 0.32549, 1)
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -63,6 +69,8 @@ autostart = true
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+process_mode = 2
+layer = 100
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameOver"]
@@ -80,15 +88,55 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -43.5
-offset_top = -13.0
-offset_right = 43.5
-offset_bottom = 13.0
+offset_left = -406.5
+offset_top = -335.01
+offset_right = 406.5
+offset_bottom = -127.01
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 150
 text = "Game Over"
 horizontal_alignment = 1
 
+[node name="PlayAgain" type="Button" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.5
+offset_top = -42.5
+offset_right = 143.5
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 56
+theme_override_styles/normal = SubResource("StyleBoxFlat_i0i8q")
+action_mode = 0
+text = "Play Again"
+
+[node name="Exit" type="Button" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 92.285
+offset_right = 52.0
+offset_bottom = 164.285
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 46
+theme_override_styles/normal = SubResource("StyleBoxFlat_ks2m2")
+action_mode = 0
+text = "Quit"
+
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="GameOver/ColorRect/PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="GameOver/ColorRect/Exit" to="." method="_on_exit_pressed"]
