@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://2t1k8c681mjd"]
+[gd_scene load_steps=8 format=3 uid="uid://2t1k8c681mjd"]
 
-[ext_resource type="Script" path="res://survivors_game.gd" id="1_5iqm4"]
-[ext_resource type="PackedScene" uid="uid://delsvq2p81v4j" path="res://player.tscn" id="1_todl5"]
-[ext_resource type="PackedScene" uid="uid://bgnjk0jcydaik" path="res://pine.tscn" id="2_dauhn"]
+[ext_resource type="Script" path="res://survivors_game.gd" id="1_1j0cx"]
+[ext_resource type="PackedScene" uid="uid://delsvq2p81v4j" path="res://player.tscn" id="2_3k6w3"]
+[ext_resource type="PackedScene" uid="uid://bgnjk0jcydaik" path="res://pine.tscn" id="3_bbf4o"]
 
 [sub_resource type="Curve2D" id="Curve2D_ftigs"]
 _data = {
@@ -16,9 +16,12 @@ bg_color = Color(0.341176, 0.639216, 0.792157, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ks2m2"]
 bg_color = Color(0.941176, 0.407843, 0.32549, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mksf"]
+bg_color = Color(0.956863, 0.643137, 0.356863, 1)
+
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_5iqm4")
+script = ExtResource("1_1j0cx")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -27,7 +30,7 @@ layer = -1
 offset_right = 1988.0
 offset_bottom = 1141.0
 
-[node name="Player" parent="." instance=ExtResource("1_todl5")]
+[node name="Player" parent="." instance=ExtResource("2_3k6w3")]
 position = Vector2(967, 593)
 
 [node name="Path2D" type="Path2D" parent="Player"]
@@ -39,28 +42,28 @@ curve = SubResource("Curve2D_ftigs")
 unique_name_in_owner = true
 position = Vector2(-109.722, -135)
 
-[node name="Pine" parent="." instance=ExtResource("2_dauhn")]
+[node name="Pine" parent="." instance=ExtResource("3_bbf4o")]
 position = Vector2(465, 480)
 
-[node name="Pine2" parent="." instance=ExtResource("2_dauhn")]
+[node name="Pine2" parent="." instance=ExtResource("3_bbf4o")]
 position = Vector2(341, 851)
 
-[node name="Pine3" parent="." instance=ExtResource("2_dauhn")]
+[node name="Pine3" parent="." instance=ExtResource("3_bbf4o")]
 position = Vector2(830, 192)
 
-[node name="Pine4" parent="." instance=ExtResource("2_dauhn")]
+[node name="Pine4" parent="." instance=ExtResource("3_bbf4o")]
 position = Vector2(882, 225)
 
-[node name="Pine5" parent="." instance=ExtResource("2_dauhn")]
+[node name="Pine5" parent="." instance=ExtResource("3_bbf4o")]
 position = Vector2(779, 244)
 
-[node name="Pine6" parent="." instance=ExtResource("2_dauhn")]
+[node name="Pine6" parent="." instance=ExtResource("3_bbf4o")]
 position = Vector2(1464, 548)
 
-[node name="Pine7" parent="." instance=ExtResource("2_dauhn")]
+[node name="Pine7" parent="." instance=ExtResource("3_bbf4o")]
 position = Vector2(1169, 850)
 
-[node name="Pine8" parent="." instance=ExtResource("2_dauhn")]
+[node name="Pine8" parent="." instance=ExtResource("3_bbf4o")]
 position = Vector2(1357, 247)
 
 [node name="Timer" type="Timer" parent="."]
@@ -70,7 +73,6 @@ autostart = true
 [node name="GameOver" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 process_mode = 2
-layer = 100
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameOver"]
@@ -115,7 +117,7 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 56
 theme_override_styles/normal = SubResource("StyleBoxFlat_i0i8q")
 action_mode = 0
-text = "Play Again"
+text = "Back to menu"
 
 [node name="Exit" type="Button" parent="GameOver/ColorRect"]
 layout_mode = 1
@@ -136,7 +138,84 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ks2m2")
 action_mode = 0
 text = "Quit"
 
+[node name="StartMenu" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="StartMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.619608, 1, 1)
+
+[node name="Label" type="Label" parent="StartMenu/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -853.5
+offset_top = -391.0
+offset_right = 853.5
+offset_bottom = -225.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.835294, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/outline_size = -275
+theme_override_constants/shadow_outline_size = 10
+theme_override_constants/line_spacing = -55
+theme_override_font_sizes/font_size = 121
+text = "SLIME RANCHER (Bad Ending)"
+
+[node name="Play" type="Button" parent="StartMenu/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 81
+theme_override_styles/normal = SubResource("StyleBoxFlat_7mksf")
+text = "Start Game"
+
+[node name="Exit" type="Button" parent="StartMenu/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 143.0
+offset_right = 52.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 46
+theme_override_styles/normal = SubResource("StyleBoxFlat_ks2m2")
+action_mode = 0
+text = "Quit"
+
+[node name="PowerUps" type="Node" parent="."]
+unique_name_in_owner = true
+
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="GameOver/ColorRect/PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="GameOver/ColorRect/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="StartMenu/ColorRect/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="StartMenu/ColorRect/Exit" to="." method="_on_exit_pressed"]

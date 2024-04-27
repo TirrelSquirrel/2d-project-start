@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://c86croxry51ef"]
+
+[ext_resource type="Script" path="res://powerUp_generic.gd" id="1_ocbuy"]
+[ext_resource type="Texture2D" uid="uid://b05r3vl5jj1iu" path="res://icons/icon1.png" id="2_76rm7"]
+[ext_resource type="Texture2D" uid="uid://ddhxs2i1amsvm" path="res://icons/icon22.png" id="3_sdq6l"]
+[ext_resource type="Texture2D" uid="uid://7io4wlau1r16" path="res://icons/icon28.png" id="4_1xbkb"]
+[ext_resource type="Texture2D" uid="uid://ddwvies4hqu4q" path="res://icons/icon32.png" id="5_8ycu7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eudsg"]
+radius = 11.2071
+
+[node name="PowerUp_Generic" type="StaticBody2D"]
+position = Vector2(154, 65)
+scale = Vector2(2.5, 2.5)
+collision_layer = 4
+script = ExtResource("1_ocbuy")
+heal = ExtResource("2_76rm7")
+damage = ExtResource("3_sdq6l")
+shoot_speed = ExtResource("4_1xbkb")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+unique_name_in_owner = true
+texture = ExtResource("5_8ycu7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_eudsg")
+debug_color = Color(0, 0.643137, 0.294118, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_eudsg")
+disabled = true
+debug_color = Color(0.901961, 0.266667, 0.419608, 0.419608)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
