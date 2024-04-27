@@ -4,10 +4,15 @@ extends StaticBody2D
 
 @export_enum("Health", "Damage", "ShootSpeed") var power_type;
 
-@export_category("Sprites")
+@export_group("Sprites")
 @export var heal = Texture;
 @export var damage = Texture;
 @export var shoot_speed = Texture;
+
+@export_group("Power Cuantities")
+@export var health = 1;
+@export var dmg = 0.1;
+@export var shootSpeed = 0.01;
 
 @export_group("")
 
@@ -32,24 +37,19 @@ func _on_area_2d_body_entered(body):
 			upgrade_shoot_speed(body)
 
 func upgrade_health(body):
-	print("hey")
-	despawn();
 	if body.has_method("upgrade_health"):
-		body.upgrade_health(5)
+		body.upgrade_health(health)
+	despawn();
 	
 func upgrade_damage(body):
-	print("hey")
-	
-	despawn();
 	if body.has_method("upgrade_damage"):
-		body.upgrade_damage(0.1)
+		body.upgrade_damage(dmg)
+	despawn();	
 	
 func upgrade_shoot_speed(body):
-	print("hey")
-	
-	despawn();
 	if body.has_method("upgrade_shoot_speed"):
-		body.upgrade_shoot_speed(0.01)
+		body.upgrade_shoot_speed(shootSpeed)
+	despawn();	
 	
 func despawn():
 	queue_free();

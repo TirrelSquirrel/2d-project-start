@@ -210,9 +210,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ks2m2")
 action_mode = 0
 text = "Quit"
 
-[node name="PowerUps" type="Node" parent="."]
-unique_name_in_owner = true
-
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="GameOver/ColorRect/PlayAgain" to="." method="_on_play_again_pressed"]

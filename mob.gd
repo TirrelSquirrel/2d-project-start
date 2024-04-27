@@ -34,16 +34,19 @@ func spawn_smoke():
 func spawn_powerup():
 	const POWERUP_GENERIC = preload("res://power_up_generic.tscn");
 	var powerup = POWERUP_GENERIC.instantiate();
-	get_parent().add_child(powerup);
+	get_parent().call_deferred("add_child", powerup);
 	powerup.global_position = global_position;
 
 func handle_death():
 	get_parent().mob_count -= 1;
-	queue_free();
-	spawn_smoke();
+	addScore();
 	var rng = randi_range(0,type);
 	if rng !=0:
-		print("Se viene power", rng)
 		spawn_powerup()
-	else:
-		print("No hay power", rng)
+	spawn_smoke();
+	queue_free();
+
+func addScore():
+	if player.has_method("addScore"):
+		var scoreToAdd = type + 1;
+		player.addScore(scoreToAdd);

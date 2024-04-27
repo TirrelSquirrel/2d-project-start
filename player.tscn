@@ -37,6 +37,50 @@ shape = SubResource("CircleShape2D_ooxmv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(1, 1, 1, 0)
+
+[node name="ScoreText" type="Label" parent="Camera2D/CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.5
+offset_right = 21.5
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 46
+text = "Score"
+horizontal_alignment = 1
+
+[node name="ScoreData" type="RichTextLabel" parent="Camera2D/CanvasLayer/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = 62.0
+offset_right = 198.0
+offset_bottom = 131.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center][/center]"
+fit_content = true
+
 [node name="Gun" parent="." instance=ExtResource("3_h01kb")]
 unique_name_in_owner = true
 position = Vector2(0, -47)
